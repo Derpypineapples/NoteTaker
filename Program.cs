@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using NoteTaker.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<NoteContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("NoteContext")));
 
 var app = builder.Build();
 
